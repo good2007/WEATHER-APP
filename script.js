@@ -21,15 +21,21 @@ async function getWeather(latitude, longitude) {
     return await response.json();
 }
 
+const loading = document.getElementById('loading');
+
 async function searchWeather() {
     try {
         const city = cityInput.value.trim();
         if (!city) return alert('Please enter a city name');
 
+        errorMessage.style.display = 'none';
+        weatherDisplay.innerHTML = '';
+        loading.style.display = 'block';
+
         const location = await getCoordinates(city);
         const weather = await getWeather(location.latitude, location.longitude);
 
-        errorMessage.style.display = 'none';
+        loading.style.display = 'none';
         weatherDisplay.innerHTML = `
             <h2>${location.name}, ${location.country}</h2>
             <p>Temperature: ${weather.current.temperature_2m}°C</p>
@@ -37,6 +43,7 @@ async function searchWeather() {
             <p>Weather Code: ${weather.current.weather_code}</p>
         `;
     } catch (error) {
+        loading.style.display = 'none';
         weatherDisplay.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
         errorMessage.style.display = 'block';
         errorMessage.textContent = `${error.message}. Please try again.`;
@@ -44,3 +51,6 @@ async function searchWeather() {
 }
 
 searchBtn?.addEventListener('click', searchWeather);
+cityInput?.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') searchWeather();
+});
