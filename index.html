@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEATHER APP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section>
+    <header>
+        THE STAREHE WEATHER APP
+    </header>
+    </section>
+     <section class="about">
+        <h2>About the App</h2><br><br>
+        <p>This weather app provides current weather information for any city. Simply enter the city name and click "Search" to get the latest weather updates.</p>
+    </section><br><br>
+   
+    <main>
+        <div class="search-container" style="align-items: center;">
+            <input type="text" id="cityInput" placeholder="Enter city name">
+            <button id="searchBtn">Search</button><br><br>
+            <div class="error" id="error-message" style="display:none;">City not found. Please try again.</div>
+            <div id="loading" style="display:none; color: #0066cc; margin-top: 8px;">Loading weather...</div>
+        </div>
+        <div id="weatherDisplay"></div>
+    </main>
+    <script src="script.js"></script>
+    
+    <footer><br><br>
+        &copy; 2023 STAREHE WEATHER APP. All rights reserved.
+    </footer>
+</body>
+</html>
